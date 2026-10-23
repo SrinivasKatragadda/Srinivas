@@ -1,0 +1,20 @@
+fastapi>=0.110
+uvicorn>=0.27
+python-dotenv>=1.0
+requests>=2.31
+pydantic>=2.5
+python-multipart>=0.0.9
+python-docx>=1.1
+openpyxl>=3.1
+PyPDF2>=3.0
+pdfplumber>=0.11
+limits>=3.0        # only needed when running inside platform-service (local_limiter)
+matplotlib>=3.7   # TSD architecture diagram
+groq>=0.9          # Groq AI client (hardcoded key, required for all AI features)
+fastmcp==3.4.8     # verified with mcp<2; exposes Snow Agent as an MCP server (port 8002)
+# Humanize ServiceNow tool library (vendor/servicenow_mcp — 522 tools)
+mcp>=1.24,<2.0
+PyYAML>=6.0
+anyio>=4.0
+httpx>=0.24
+playwright>=1.40     # Flow Designer engine: builds flows & subflows in the browser (then: python -m playwright install chromium)

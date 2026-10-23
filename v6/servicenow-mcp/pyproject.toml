@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "servicenow-mcp"
+version = "1.0.0"
+description = "Complete Python ServiceNow MCP (Model Context Protocol) Server for ITSM, CMDB, Catalog, Knowledge, Scripting, and Operations"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=2.0.0",
+    "pydantic>=2.5.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "anyio>=4.0.0",
+    "httpx>=0.24.0",
+    "uvicorn>=0.27.0",
+    "starlette>=0.35.0"
+]
+
+[project.scripts]
+servicenow-mcp = "servicenow_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

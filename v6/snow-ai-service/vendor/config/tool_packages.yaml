@@ -1,0 +1,1237 @@
+# ServiceNow MCP Tool Packages Configuration
+# Define sets of tools to be exposed by the MCP server based on roles/workflows.
+# The MCP server loads tools based on the MCP_TOOL_PACKAGE environment variable.
+# If MCP_TOOL_PACKAGE is not set, 'full' is loaded.
+# If MCP_TOOL_PACKAGE is set to 'none', no tools are loaded (except list_tool_packages).
+
+# --- Package Definitions ---
+
+none: []
+
+flow_deployment:
+  # Minimal package for Generic Flow Server deployment.
+  # Keeps MCP client context small during create_flow / validate / retry loops.
+  - list_flow_actions
+  - create_incident_admin_notification_flow
+  - validate_flow_json
+  - hint_flow_json
+  - create_flow
+  - edit_flow
+  - validate_subflow_json
+  - hint_subflow_json
+  - generate_subflow_source
+  - deploy_subflow
+  - verify_subflow
+
+service_desk:
+  # Incident Management
+  - create_incident
+  - update_incident
+  - add_comment
+  - resolve_incident
+  - list_incidents
+  - get_incident_by_number
+  # User Lookup
+  - get_user
+  - list_users
+  # Knowledge Lookup
+  - get_article
+  - list_articles
+  # Request Management
+  - list_requests
+  - get_request
+  - get_catalog_item_request_options
+  - create_request
+  - update_request
+  - list_requested_items
+  - get_requested_item
+  - create_requested_item
+  - update_requested_item
+  - list_catalog_tasks
+  - create_catalog_task
+  - update_catalog_task
+  - list_request_approvals
+  - update_request_approval
+  - get_request_fulfillment_status
+  # Approval Management
+  - get_approval_management_metadata
+  - list_approval_records
+  - get_approval_record
+  - create_approval_record
+  - update_approval_record
+  - delete_approval_record
+  - approve_approval
+  - reject_approval
+  - cancel_approval
+  - list_approval_definitions
+  - get_approval_definition
+  - create_approval_definition
+  - update_approval_definition
+  - delete_approval_definition
+  - list_approval_rules
+  - get_approval_rule
+  - create_approval_rule
+  - update_approval_rule
+  - delete_approval_rule
+  - list_approver_groups
+  - get_approver_group
+  - create_approver_group
+  - update_approver_group
+  - delete_approver_group
+  - list_approval_delegations
+  - get_approval_delegation
+  - create_approval_delegation
+  - update_approval_delegation
+  - delete_approval_delegation
+  - list_approval_history
+  # Problem Management
+  - list_problems
+  - get_problem
+  - create_problem
+  - update_problem
+  - resolve_problem
+  - list_problem_tasks
+  - get_problem_task
+  - create_problem_task
+  - update_problem_task
+  - resolve_problem_task
+  - link_problem_to_incident
+  - link_problem_to_known_error
+
+catalog_builder:
+  # Core Catalog
+  - list_catalogs
+  - get_catalog
+  - create_catalog
+  - update_catalog
+  - list_catalog_items
+  - get_catalog_item
+  - create_catalog_item
+  - update_catalog_item
+  - publish_catalog_item
+  # Categories
+  - list_catalog_categories
+  - create_catalog_category
+  - update_catalog_category
+  - move_catalog_items
+  # Variables
+  - add_standard_order_variables
+  - create_catalog_variable_behavior_policy
+  - create_catalog_item_variable
+  - create_catalog_item_variables
+  - get_catalog_variable_metadata
+  - list_catalog_item_variables
+  - set_catalog_variable_behavior
+  - update_catalog_item_variable
+  - delete_catalog_item_variable
+  - create_catalog_variable_choice
+  # Catalog Client Scripts
+  - list_catalog_client_scripts
+  - get_catalog_client_script
+  - create_catalog_client_script
+  - update_catalog_client_script
+  # Basic Scripting (UI Policy)
+  - list_ui_policies
+  - get_ui_policy
+  - create_ui_policy
+  - update_ui_policy
+  - delete_ui_policy
+  - list_ui_policy_actions
+  - get_ui_policy_action
+  - create_ui_policy_action
+  - update_ui_policy_action
+  - delete_ui_policy_action
+  # Optimization
+  - get_optimization_recommendations
+
+change_coordinator:
+  # Change Lifecycle
+  - create_change_request
+  - update_change_request
+  - list_change_requests
+  - get_change_request_details
+  # Tasks & Approval
+  - add_change_task
+  - submit_change_for_approval
+  - approve_change
+  - reject_change
+
+request_manager:
+  # Requests
+  - list_requests
+  - get_request
+  - get_catalog_item_request_options
+  - create_request
+  - update_request
+  # Requested Items
+  - list_requested_items
+  - get_requested_item
+  - create_requested_item
+  - update_requested_item
+  # Catalog Tasks
+  - list_catalog_tasks
+  - create_catalog_task
+  - update_catalog_task
+  # Approvals and Fulfillment
+  - list_request_approvals
+  - update_request_approval
+  - get_request_fulfillment_status
+
+approval_manager:
+  # Approval metadata and record lifecycle
+  - get_approval_management_metadata
+  - list_approval_records
+  - get_approval_record
+  - create_approval_record
+  - update_approval_record
+  - delete_approval_record
+  - approve_approval
+  - reject_approval
+  - cancel_approval
+  # Approval definitions
+  - list_approval_definitions
+  - get_approval_definition
+  - create_approval_definition
+  - update_approval_definition
+  - delete_approval_definition
+  # Approval rules
+  - list_approval_rules
+  - get_approval_rule
+  - create_approval_rule
+  - update_approval_rule
+  - delete_approval_rule
+  # Approver groups
+  - list_approver_groups
+  - get_approver_group
+  - create_approver_group
+  - update_approver_group
+  - delete_approver_group
+  # Delegations and history
+  - list_approval_delegations
+  - get_approval_delegation
+  - create_approval_delegation
+  - update_approval_delegation
+  - delete_approval_delegation
+  - list_approval_history
+
+problem_manager:
+  # Problems
+  - list_problems
+  - get_problem
+  - create_problem
+  - update_problem
+  - resolve_problem
+  # Problem Tasks
+  - list_problem_tasks
+  - get_problem_task
+  - create_problem_task
+  - update_problem_task
+  - resolve_problem_task
+  # Links and Known Errors
+  - link_problem_to_incident
+  - link_problem_to_known_error
+
+notification_manager:
+  # Notifications
+  - list_notifications
+  - get_notification
+  - create_notification
+  - update_notification
+  # Email Templates
+  - list_email_templates
+  - get_email_template
+  - create_email_template
+  - update_email_template
+  # Event Registry and Queue
+  - list_event_definitions
+  - get_event_definition
+  - create_event_definition
+  - update_event_definition
+  - queue_event
+  # Script Actions
+  - list_script_actions
+  - get_script_action
+  - create_script_action
+  - update_script_action
+  - delete_script_action
+
+knowledge_author:
+  # KB Management
+  - create_knowledge_base
+  - list_knowledge_bases
+  # KB Categories
+  - create_category  # KB specific category tool
+  - list_categories  # KB specific category tool
+  # Article Lifecycle
+  - create_article
+  - update_article
+  - publish_article
+  - list_articles
+  - get_article
+
+platform_developer:
+  # Script Includes
+  - list_script_includes
+  - get_script_include
+  - create_script_include
+  - update_script_include
+  - delete_script_include
+  - get_editable_fields
+  - detailed_update_script_include
+  # Table and Field Schema
+  - list_table_definitions
+  - get_table_definition
+  - create_table_definition
+  - update_table_definition
+  - list_field_definitions
+  - get_field_definition
+  - create_field_definition
+  - update_field_definition
+  # Scoped Application Lifecycle
+  - get_scoped_app_lifecycle_metadata
+  - list_scoped_app_artifacts
+  - get_scoped_app_artifact
+  - create_scoped_app_artifact
+  - update_scoped_app_artifact
+  - delete_scoped_app_artifact
+  - ensure_application_scope
+  - change_artifact_application_scope
+  - set_application_update_set
+  - switch_application_scope
+  # Generic Server-side Scripts and Scheduled Jobs
+  - list_server_side_scripts
+  - get_server_side_script
+  - create_server_side_script
+  - update_server_side_script
+  - delete_server_side_script
+  - get_server_side_script_type_metadata
+  - list_scheduled_script_executions
+  - get_scheduled_script_execution
+  - create_scheduled_script_execution
+  - update_scheduled_script_execution
+  - delete_scheduled_script_execution
+  - list_scheduled_jobs
+  - get_scheduled_job
+  - create_scheduled_job
+  - update_scheduled_job
+  - delete_scheduled_job
+  - list_background_jobs
+  - get_background_job
+  - create_background_job
+  - update_background_job
+  - delete_background_job
+  - execute_background_script
+  - list_fix_scripts
+  - get_fix_script
+  - create_fix_script
+  - update_fix_script
+  - delete_fix_script
+  # Business Rules
+  - list_business_rules
+  - get_business_rule
+  - create_business_rule
+  - update_business_rule
+  - delete_business_rule
+  # UI Actions
+  - list_ui_actions
+  - get_ui_action
+  - create_ui_action
+  - update_ui_action
+  - delete_ui_action
+  # UI Policies
+  - list_ui_policies
+  - get_ui_policy
+  - create_ui_policy
+  - update_ui_policy
+  - delete_ui_policy
+  - list_ui_policy_actions
+  - get_ui_policy_action
+  - create_ui_policy_action
+  - update_ui_policy_action
+  - delete_ui_policy_action
+  # Data Policies
+  - convert_ui_policy_to_data_policy
+  - list_data_policies
+  - get_data_policy
+  - create_data_policy
+  - update_data_policy
+  - delete_data_policy
+  - list_data_policy_rules
+  - get_data_policy_rule
+  - create_data_policy_rule
+  - update_data_policy_rule
+  - delete_data_policy_rule
+  - set_data_policy_client_enforcement
+  # Workflows
+  - list_workflows
+  - get_workflow_details
+  - list_flow_actions
+  - validate_flow_json
+  - hint_flow_json
+  - create_flow
+  - edit_flow
+  - create_incident_admin_notification_flow
+  - validate_subflow_json
+  - hint_subflow_json
+  - generate_subflow_source
+  - deploy_subflow
+  - verify_subflow
+  - create_workflow
+  - update_workflow
+  - delete_workflow
+  - activate_workflow
+  - deactivate_workflow
+  - publish_workflow
+  - list_workflow_versions
+  # Notifications and Events
+  - list_notifications
+  - get_notification
+  - create_notification
+  - update_notification
+  - list_email_templates
+  - get_email_template
+  - create_email_template
+  - update_email_template
+  - list_event_definitions
+  - get_event_definition
+  - create_event_definition
+  - update_event_definition
+  - queue_event
+  - list_script_actions
+  - get_script_action
+  - create_script_action
+  - update_script_action
+  - delete_script_action
+  # SLA Definitions
+  - list_slas
+  - list_sla_schedules
+  - get_sla
+  - create_sla
+  - update_sla
+  # Workflow Activities
+  - add_workflow_activity
+  - update_workflow_activity
+  - delete_workflow_activity
+  - reorder_workflow_activities
+  - get_workflow_activities
+  # Changesets
+  - list_changesets
+  - get_changeset_details
+  - create_changeset
+  - update_changeset
+  - commit_changeset
+  - publish_changeset
+  - add_file_to_changeset
+  - list_update_sets
+  - get_update_set_details
+  - create_update_set
+  - switch_current_update_set
+  - commit_update_set
+  - preview_update_set
+  - validate_update_set
+  - promote_update_set
+  - get_instance_build_info
+  - get_release_behavior
+  - get_enabled_module_release_behaviors
+
+agile_management:
+  # Story Management
+  - create_story
+  - update_story
+  - list_stories
+  - list_story_dependencies
+  - create_story_dependency
+  - delete_story_dependency
+  # Epic Management
+  - create_epic
+  - update_epic
+  - list_epics
+  # Scrum Task Management
+  - create_scrum_task
+  - update_scrum_task
+  - list_scrum_tasks
+  # Project Management
+  - create_project
+  - update_project
+  - list_projects
+
+system_administrator:
+  # User Management
+  - create_user
+  - update_user
+  - get_user
+  - list_users
+  # Group Management
+  - create_group
+  - update_group
+  - list_groups
+  - add_group_members
+  - remove_group_members
+  # Organization reference data
+  - create_company
+  - update_company
+  - get_company
+  - list_companies
+  - delete_company
+  - create_location
+  - update_location
+  - get_location
+  - list_locations
+  - delete_location
+  - create_department
+  - update_department
+  - get_department
+  - list_departments
+  - delete_department
+  - create_cost_center
+  - update_cost_center
+  - get_cost_center
+  - list_cost_centers
+  - delete_cost_center
+
+asset_manager:
+  # Reference data needed to prepare assets
+  - create_user
+  - update_user
+  - get_user
+  - list_users
+  - create_group
+  - update_group
+  - list_groups
+  - create_company
+  - update_company
+  - get_company
+  - list_companies
+  - delete_company
+  - create_location
+  - update_location
+  - get_location
+  - list_locations
+  - delete_location
+  - create_department
+  - update_department
+  - get_department
+  - list_departments
+  - delete_department
+  - create_cost_center
+  - update_cost_center
+  - get_cost_center
+  - list_cost_centers
+  - delete_cost_center
+  # Asset metadata and records
+  - get_asset_management_metadata
+  - list_assets
+  - get_asset
+  - create_hardware_asset
+  - create_software_asset
+  - update_asset
+  # Lifecycle actions
+  - perform_asset_lifecycle_action
+  - assign_asset
+  - return_asset
+  - reserve_asset
+  - transfer_asset
+  # Stockrooms
+  - list_stockrooms
+  - get_stockroom
+  - create_stockroom
+  - update_stockroom
+  # Models
+  - list_asset_models
+  - create_asset_model
+  - update_asset_model
+  - asset_create
+  - asset_create_hardware
+  - asset_create_consumable
+  - asset_create_software_license
+  - asset_get
+  - asset_update
+  - asset_search
+  - get_allowed_asset_states
+  - get_allowed_asset_substates
+  - validate_asset_state_transition
+  - asset_update_state
+  - mark_asset_available
+  - mark_asset_reserved
+  - mark_asset_retired
+  - mark_asset_lost
+  - mark_asset_stolen
+  - asset_assign_to_user
+  - asset_return_from_user
+  - asset_adjust_consumable_quantity
+  - asset_transfer_create
+  - asset_transfer_line_create
+  - asset_retire
+  - asset_stockroom_create
+  - asset_stockroom_inventory
+  - asset_report_inventory
+  - asset_repair_create
+  - asset_repair_close
+  - asset_sam_create_entitlement
+  - search_asset_models
+  - search_stockrooms
+  - create_asset
+  - create_consumable_asset
+  - create_software_license_asset
+  - search_assets
+  - upsert_asset
+  - detect_duplicate_assets
+  - mark_asset_on_order
+  - mark_asset_in_use
+  - mark_asset_in_transit
+  - mark_asset_in_maintenance
+  - mark_asset_missing
+  - mark_asset_quarantined
+  - mark_asset_legal_hold
+  - mark_asset_pending_repair
+  - mark_asset_pending_disposal
+  - mark_asset_pending_transfer
+  - receive_asset_into_stockroom
+  - release_asset_reservation
+  - adjust_consumable_quantity
+  - move_asset_to_stockroom
+  - search_stockroom_inventory
+  - quarantine_asset
+  - place_asset_on_hold
+  - assign_asset_to_user
+  - return_asset_from_user
+  - create_transfer_order
+  - create_transfer_order_line
+  - add_assets_to_transfer_order
+  - retire_asset
+  - sell_asset
+  - donate_asset
+  - lease_return_asset
+  - mark_asset_obsolete
+  - generate_asset_inventory_report
+  - generate_stockroom_inventory_report
+  - generate_lifecycle_report
+  - generate_asset_assignment_report
+  - generate_missing_asset_report
+  - generate_warranty_expiry_report
+  - generate_duplicate_asset_report
+
+cmdb_manager:
+  - servicenow_internal_cmdb.instance_preflight
+  - servicenow_internal_cmdb.validate_ci_payload
+  - servicenow_internal_cmdb.upsert_ci
+  - servicenow_internal_cmdb.create_csdm_relationship
+  - servicenow_internal_cmdb.managed_ingestion
+  - servicenow_internal_cmdb.governance_insight
+  - servicenow_internal_cmdb.health_dashboard
+
+security_admin:
+  # ACL administration
+  - list_acls
+  - get_acl
+  - create_acl
+  - update_acl
+  - test_acl_access
+  - validate_acl
+  - validate_security_constraints
+  # Role administration
+  - list_roles
+  - get_role
+  - create_role
+  - update_role
+  - validate_role
+  # Role mappings
+  - list_role_mappings
+  - create_role_mapping
+  - update_role_mapping
+  - validate_role_mapping
+
+policy_governance:
+  # UI Policies and actions
+  - list_ui_policies
+  - get_ui_policy
+  - create_ui_policy
+  - update_ui_policy
+  - delete_ui_policy
+  - list_ui_policy_actions
+  - get_ui_policy_action
+  - create_ui_policy_action
+  - update_ui_policy_action
+  - delete_ui_policy_action
+  # Data Policies and rules
+  - convert_ui_policy_to_data_policy
+  - list_data_policies
+  - get_data_policy
+  - create_data_policy
+  - update_data_policy
+  - delete_data_policy
+  - list_data_policy_rules
+  - get_data_policy_rule
+  - create_data_policy_rule
+  - update_data_policy_rule
+  - delete_data_policy_rule
+  - set_data_policy_client_enforcement
+
+employee_center:
+  # Employee Center portal content
+  - list_esc_pages
+  - get_esc_page
+  - create_esc_page
+  - update_esc_page
+  - delete_esc_page
+  - list_esc_topics
+  - get_esc_topic
+  - create_esc_topic
+  - update_esc_topic
+  - delete_esc_topic
+  - list_esc_announcements
+  - get_esc_announcement
+  - create_esc_announcement
+  - update_esc_announcement
+  - delete_esc_announcement
+
+dashboards_reporting:
+  # Reports, dashboards, tabs, and Performance Analytics
+  - list_reports
+  - get_report
+  - create_report
+  - update_report
+  - delete_report
+  - run_report
+  - list_dashboards
+  - get_dashboard
+  - create_dashboard
+  - update_dashboard
+  - delete_dashboard
+  - list_dashboard_tabs
+  - add_dashboard_tab
+  - update_dashboard_tab
+  - delete_dashboard_tab
+  - list_pa_indicators
+  - get_pa_indicator
+  - create_pa_indicator
+  - update_pa_indicator
+  - delete_pa_indicator
+  - list_pa_widget_instances
+
+full:
+  # Employee Center
+  - list_esc_pages
+  - get_esc_page
+  - create_esc_page
+  - update_esc_page
+  - delete_esc_page
+  - list_esc_topics
+  - get_esc_topic
+  - create_esc_topic
+  - update_esc_topic
+  - delete_esc_topic
+  - list_esc_announcements
+  - get_esc_announcement
+  - create_esc_announcement
+  - update_esc_announcement
+  - delete_esc_announcement
+  # Dashboards and Reporting
+  - list_reports
+  - get_report
+  - create_report
+  - update_report
+  - delete_report
+  - run_report
+  - list_dashboards
+  - get_dashboard
+  - create_dashboard
+  - update_dashboard
+  - delete_dashboard
+  - list_dashboard_tabs
+  - add_dashboard_tab
+  - update_dashboard_tab
+  - delete_dashboard_tab
+  - list_pa_indicators
+  - get_pa_indicator
+  - create_pa_indicator
+  - update_pa_indicator
+  - delete_pa_indicator
+  - list_pa_widget_instances
+  # Incident Management
+  - create_incident
+  - update_incident
+  - add_comment
+  - resolve_incident
+  - list_incidents
+  - get_incident_by_number
+  # Catalog (Core)
+  - list_catalogs
+  - get_catalog
+  - create_catalog
+  - update_catalog
+  - list_catalog_items
+  - get_catalog_item
+  - create_catalog_item
+  - update_catalog_item
+  - publish_catalog_item
+  # Catalog (Categories)
+  - list_catalog_categories
+  - create_catalog_category
+  - update_catalog_category
+  - move_catalog_items
+  # Catalog (Optimization)
+  - get_optimization_recommendations
+  # Catalog (Variables)
+  - add_standard_order_variables
+  - create_catalog_variable_behavior_policy
+  - create_catalog_item_variable
+  - create_catalog_item_variables
+  - get_catalog_variable_metadata
+  - list_catalog_item_variables
+  - set_catalog_variable_behavior
+  - update_catalog_item_variable
+  - delete_catalog_item_variable
+  - create_catalog_variable_choice
+  # Catalog (Client Scripts)
+  - list_catalog_client_scripts
+  - get_catalog_client_script
+  - create_catalog_client_script
+  - update_catalog_client_script
+  # Change Management
+  - create_change_request
+  - update_change_request
+  - list_change_requests
+  - get_change_request_details
+  - add_change_task
+  - submit_change_for_approval
+  - approve_change
+  - reject_change
+  # Request Management
+  - list_requests
+  - get_request
+  - get_catalog_item_request_options
+  - create_request
+  - update_request
+  - list_requested_items
+  - get_requested_item
+  - create_requested_item
+  - update_requested_item
+  - list_catalog_tasks
+  - create_catalog_task
+  - update_catalog_task
+  - list_request_approvals
+  - update_request_approval
+  - get_request_fulfillment_status
+  # Problem Management
+  - list_problems
+  - get_problem
+  - create_problem
+  - update_problem
+  - resolve_problem
+  - list_problem_tasks
+  - get_problem_task
+  - create_problem_task
+  - update_problem_task
+  - resolve_problem_task
+  - link_problem_to_incident
+  - link_problem_to_known_error
+  # Notifications and Events
+  - list_notifications
+  - get_notification
+  - create_notification
+  - update_notification
+  - list_email_templates
+  - get_email_template
+  - create_email_template
+  - update_email_template
+  - list_event_definitions
+  - get_event_definition
+  - create_event_definition
+  - update_event_definition
+  - queue_event
+  - list_script_actions
+  - get_script_action
+  - create_script_action
+  - update_script_action
+  - delete_script_action
+  # Workflow
+  - list_workflows
+  - get_workflow_details
+  - list_workflow_versions
+  - get_workflow_activities
+  - list_flow_actions
+  - validate_flow_json
+  - hint_flow_json
+  - create_flow
+  - edit_flow
+  - create_incident_admin_notification_flow
+  - validate_subflow_json
+  - hint_subflow_json
+  - generate_subflow_source
+  - deploy_subflow
+  - verify_subflow
+  - create_workflow
+  - update_workflow
+  - delete_workflow
+  - activate_workflow
+  - deactivate_workflow
+  - publish_workflow
+  # SLA Definitions
+  - list_slas
+  - list_sla_schedules
+  - get_sla
+  - create_sla
+  - update_sla
+  - add_workflow_activity
+  - update_workflow_activity
+  - delete_workflow_activity
+  - reorder_workflow_activities
+  # Changeset
+  - list_changesets
+  - get_changeset_details
+  - create_changeset
+  - update_changeset
+  - commit_changeset
+  - publish_changeset
+  - add_file_to_changeset
+  - list_update_sets
+  - get_update_set_details
+  - create_update_set
+  - switch_current_update_set
+  - commit_update_set
+  - preview_update_set
+  - validate_update_set
+  - promote_update_set
+  - get_instance_build_info
+  - get_release_behavior
+  - get_enabled_module_release_behaviors
+  # Script Include
+  - list_script_includes
+  - get_script_include
+  - create_script_include
+  - update_script_include
+  - delete_script_include
+  - get_editable_fields
+  - detailed_update_script_include
+  # Table and Field Schema
+  - list_table_definitions
+  - get_table_definition
+  - create_table_definition
+  - update_table_definition
+  - list_field_definitions
+  - get_field_definition
+  - create_field_definition
+  - update_field_definition
+  # Scoped Application Lifecycle
+  - get_scoped_app_lifecycle_metadata
+  - list_scoped_app_artifacts
+  - get_scoped_app_artifact
+  - create_scoped_app_artifact
+  - update_scoped_app_artifact
+  - delete_scoped_app_artifact
+  - ensure_application_scope
+  - change_artifact_application_scope
+  - set_application_update_set
+  - switch_application_scope
+  # Generic Server-side Scripts and Scheduled Jobs
+  - list_server_side_scripts
+  - get_server_side_script
+  - create_server_side_script
+  - update_server_side_script
+  - delete_server_side_script
+  - get_server_side_script_type_metadata
+  - list_scheduled_script_executions
+  - get_scheduled_script_execution
+  - create_scheduled_script_execution
+  - update_scheduled_script_execution
+  - delete_scheduled_script_execution
+  - list_scheduled_jobs
+  - get_scheduled_job
+  - create_scheduled_job
+  - update_scheduled_job
+  - delete_scheduled_job
+  - list_background_jobs
+  - get_background_job
+  - create_background_job
+  - update_background_job
+  - delete_background_job
+  - execute_background_script
+  - list_fix_scripts
+  - get_fix_script
+  - create_fix_script
+  - update_fix_script
+  - delete_fix_script
+  # Business Rules
+  - list_business_rules
+  - get_business_rule
+  - create_business_rule
+  - update_business_rule
+  - delete_business_rule
+  # UI Actions
+  - list_ui_actions
+  - get_ui_action
+  - create_ui_action
+  - update_ui_action
+  - delete_ui_action
+  # UI Policies
+  - list_ui_policies
+  - get_ui_policy
+  - create_ui_policy
+  - update_ui_policy
+  - delete_ui_policy
+  - list_ui_policy_actions
+  - get_ui_policy_action
+  - create_ui_policy_action
+  - update_ui_policy_action
+  - delete_ui_policy_action
+  # Data Policies
+  - convert_ui_policy_to_data_policy
+  - list_data_policies
+  - get_data_policy
+  - create_data_policy
+  - update_data_policy
+  - delete_data_policy
+  - list_data_policy_rules
+  - get_data_policy_rule
+  - create_data_policy_rule
+  - update_data_policy_rule
+  - delete_data_policy_rule
+  - set_data_policy_client_enforcement
+  # Knowledge Base
+  - create_knowledge_base
+  - list_knowledge_bases
+  - create_category # KB specific
+  - list_categories # KB specific
+  - create_article
+  - update_article
+  - publish_article
+  - list_articles
+  - get_article
+  # User Management
+  - create_user
+  - update_user
+  - get_user
+  - list_users
+  - create_group
+  - update_group
+  - add_group_members
+  - remove_group_members
+  - list_groups
+  - create_company
+  - update_company
+  - get_company
+  - list_companies
+  - delete_company
+  - create_location
+  - update_location
+  - get_location
+  - list_locations
+  - delete_location
+  - create_department
+  - update_department
+  - get_department
+  - list_departments
+  - delete_department
+  - create_cost_center
+  - update_cost_center
+  - get_cost_center
+  - list_cost_centers
+  - delete_cost_center
+  # Asset Management
+  - get_asset_management_metadata
+  - list_assets
+  - get_asset
+  - create_hardware_asset
+  - create_software_asset
+  - update_asset
+  - perform_asset_lifecycle_action
+  - assign_asset
+  - return_asset
+  - reserve_asset
+  - transfer_asset
+  - list_stockrooms
+  - get_stockroom
+  - create_stockroom
+  - update_stockroom
+  - list_asset_models
+  - create_asset_model
+  - update_asset_model
+  - asset_create
+  - asset_create_hardware
+  - asset_create_consumable
+  - asset_create_software_license
+  - asset_get
+  - asset_update
+  - asset_search
+  - get_allowed_asset_states
+  - get_allowed_asset_substates
+  - validate_asset_state_transition
+  - asset_update_state
+  - mark_asset_available
+  - mark_asset_reserved
+  - mark_asset_retired
+  - mark_asset_lost
+  - mark_asset_stolen
+  - asset_assign_to_user
+  - asset_return_from_user
+  - asset_adjust_consumable_quantity
+  - asset_transfer_create
+  - asset_transfer_line_create
+  - asset_retire
+  - asset_stockroom_create
+  - asset_stockroom_inventory
+  - asset_report_inventory
+  - asset_repair_create
+  - asset_repair_close
+  - asset_sam_create_entitlement
+  - search_asset_models
+  - search_stockrooms
+  - create_asset
+  - create_consumable_asset
+  - create_software_license_asset
+  - search_assets
+  - upsert_asset
+  - detect_duplicate_assets
+  - mark_asset_on_order
+  - mark_asset_in_use
+  - mark_asset_in_transit
+  - mark_asset_in_maintenance
+  - mark_asset_missing
+  - mark_asset_quarantined
+  - mark_asset_legal_hold
+  - mark_asset_pending_repair
+  - mark_asset_pending_disposal
+  - mark_asset_pending_transfer
+  - receive_asset_into_stockroom
+  - release_asset_reservation
+  - adjust_consumable_quantity
+  - move_asset_to_stockroom
+  - search_stockroom_inventory
+  - quarantine_asset
+  - place_asset_on_hold
+  - assign_asset_to_user
+  - return_asset_from_user
+  - create_transfer_order
+  - create_transfer_order_line
+  - add_assets_to_transfer_order
+  - retire_asset
+  - sell_asset
+  - donate_asset
+  - lease_return_asset
+  - mark_asset_obsolete
+  - generate_asset_inventory_report
+  - generate_stockroom_inventory_report
+  - generate_lifecycle_report
+  - generate_asset_assignment_report
+  - generate_missing_asset_report
+  - generate_warranty_expiry_report
+  - generate_duplicate_asset_report
+  # Internal CMDB/CI IRE tools
+  - servicenow_internal_cmdb.instance_preflight
+  - servicenow_internal_cmdb.validate_ci_payload
+  - servicenow_internal_cmdb.upsert_ci
+  - servicenow_internal_cmdb.create_csdm_relationship
+  - servicenow_internal_cmdb.managed_ingestion
+  - servicenow_internal_cmdb.governance_insight
+  - servicenow_internal_cmdb.health_dashboard
+  # ATF Framework Support
+  - servicenow_atf_find_test
+  - servicenow_atf_find_step
+  - servicenow_atf_get_step_inputs
+  - servicenow_atf_debug_step_storage
+  - servicenow_atf_preview_step_input_update
+  - servicenow_atf_update_step_input
+  - servicenow_atf_validate_step_input
+  - servicenow_atf_rollback_step_input_update
+  - servicenow_resolve_reference
+  - servicenow_atf_update_test_metadata
+  - servicenow_atf_update_step_metadata
+  - servicenow_atf_reorder_steps
+  - atf_framework.discover_atf_capabilities
+  - atf_framework.analyze_atf_coverage
+  - atf_framework.list_atf_tests
+  - atf_framework.get_atf_test
+  - atf_framework.update_atf_test
+  - atf_framework.delete_atf_test
+  - atf_framework.clone_atf_test
+  - atf_framework.list_atf_test_steps
+  - atf_framework.get_atf_test_step
+  - atf_framework.add_atf_test_step
+  - atf_framework.create_atf_test_step
+  - atf_framework.add_atf_test_steps
+  - atf_framework.create_atf_test_steps
+  - atf_framework.update_atf_test_step
+  - atf_framework.update_atf_test_steps
+  - atf_framework.delete_atf_test_step
+  - atf_framework.clone_atf_test_step
+  - atf_framework.reorder_atf_test_steps
+  - atf_framework.list_atf_suites
+  - atf_framework.get_atf_suite
+  - atf_framework.route_atf_request
+  - atf_framework.validate_atf_readiness
+  - atf_framework.configure_atf_test_steps
+  - atf_framework.create_incident_atf_suite_and_run
+  - atf_framework.create_incident_flow_atf_suite_and_run
+  - atf_framework.generate_atf_test_plan
+  - atf_framework.create_atf_test
+  - atf_framework.create_atf_test_suite
+  - atf_framework.update_atf_suite
+  - atf_framework.delete_atf_suite
+  - atf_framework.clone_atf_suite
+  - atf_framework.add_tests_to_atf_suite
+  - atf_framework.remove_tests_from_atf_suite
+  - atf_framework.reorder_tests_in_atf_suite
+  - atf_framework.create_atf_four_suite_pack
+  - atf_framework.generate_atf_tests_for_update_set
+  - atf_framework.generate_atf_tests_for_catalog_item
+  - atf_framework.generate_atf_tests_for_record_producer
+  - atf_framework.generate_atf_tests_for_flow
+  - atf_framework.generate_atf_tests_for_table
+  - atf_framework.generate_atf_tests_for_business_rule
+  - atf_framework.generate_atf_tests_for_script_include
+  - atf_framework.generate_atf_tests_for_client_script
+  - atf_framework.generate_atf_tests_for_ui_policy
+  - atf_framework.generate_atf_tests_for_notification
+  - atf_framework.generate_atf_tests_for_report
+  - atf_framework.generate_atf_tests_for_dashboard
+  - atf_framework.generate_atf_tests_for_scoped_app
+  - atf_framework.generate_atf_tests_for_acl
+  - atf_framework.generate_atf_tests_for_rest_integration
+  - atf_framework.run_atf_test
+  - atf_framework.run_atf_test_suite
+  - atf_framework.run_atf_and_collect_results
+  - atf_framework.run_existing_atf_and_show_results
+  - atf_framework.collect_atf_results
+  - atf_framework.explain_atf_failures
+  - atf_framework.collect_atf_evidence
+  - atf_framework.validate_atf_quality_gate
+  - atf_framework.create_atf_regression_pack
+  - atf_framework.schedule_atf_suite
+  - atf_framework.generate_manual_test_fallback
+  # Security administration
+  - list_acls
+  - get_acl
+  - create_acl
+  - update_acl
+  - test_acl_access
+  - validate_acl
+  - validate_security_constraints
+  - list_roles
+  - get_role
+  - create_role
+  - update_role
+  - validate_role
+  - list_role_mappings
+  - create_role_mapping
+  - update_role_mapping
+  - validate_role_mapping
+  # Story Management
+  - create_story
+  - update_story
+  - list_stories
+  - list_story_dependencies
+  - create_story_dependency
+  - delete_story_dependency
+  # Epic Management
+  - create_epic
+  - update_epic
+  - list_epics
+  # Scrum Task Management
+  - create_scrum_task
+  - update_scrum_task
+  - list_scrum_tasks
+  # Project Management
+  - create_project
+  - update_project
+  - list_projects

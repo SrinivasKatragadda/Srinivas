@@ -1,0 +1,31 @@
+{
+  "https://dev402135.service-now.com": [
+    {
+      "published_name": "AI_Sub: Weekly Security Offboarding Approval Fulfillment Assignment Notification Report Summary Handler _1530",
+      "sys_id": "",
+      "description": "Handles Weekly Security Offboarding Approval Fulfillment Assignment Notification Report Summary automation",
+      "text": "AI_Sub: Weekly Security Offboarding Approval Fulfillment Assignment Notification Report Summary Handler Handles Weekly Security Offboarding Approval Fulfillment Assignment Notification Report Summary automation Log Subflow executing: Weekly Security Offboarding Approval Fulfillment Assignment Notification Report Summary Send Email Weekly Security Offboarding Approval Fulfillment Assignment Notification Report Summary Ask for Approval oncall@yourcompany.com Record ID record_id Table Name table_name Status status",
+      "action_types": ["Log", "Send Email", "Ask For Approval"],
+      "inputs": [
+        {"label": "Record ID", "name": "record_id", "type": "String"},
+        {"label": "Table Name", "name": "table_name", "type": "String"}
+      ],
+      "outputs": [
+        {"label": "Status", "name": "status", "type": "String"}
+      ]
+    },
+    {
+      "published_name": "AI_Sub: On-Call Engineer Notification _2141",
+      "sys_id": "",
+      "description": "Notify on-call engineer",
+      "text": "AI_Sub: On-Call Engineer Notification Notify on-call engineer Update Record incident Incident incident Status status",
+      "action_types": ["Update Record"],
+      "inputs": [
+        {"label": "Incident", "name": "incident", "type": "Record"}
+      ],
+      "outputs": [
+        {"label": "Status", "name": "status", "type": "String"}
+      ]
+    }
+  ]
+}

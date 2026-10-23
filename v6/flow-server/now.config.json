@@ -1,0 +1,11 @@
+{
+  "scope": "x_1888583_visitorp",
+  "name": "x_1888583_visitorp",
+  "scopeId": "0f5097bbc3330354de447f65e40131c0",
+  "fluentDir": "src/fluent",
+  "clientDir": "",
+  "metadataDir": "metadata",
+  "appOutputDir": "dist/app",
+  "packOutputDir": "target",
+  "tsconfigPath": "tsconfig.json"
+}
